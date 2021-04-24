@@ -9,15 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "users", produces=MediaType.APPLICATION_JSON_VALUE)
+//@RequestMapping(path = "users", produces=MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @GetMapping("users")
     public ResponseEntity getAllUsers(){
         List<User> users = userService.getAllUsers();
 
@@ -29,15 +30,14 @@ public class UserController {
         userService.create(user);
     }
 
-    @GetMapping("/{id}")
-    public User Read(@PathVariable Integer id) {
+    @GetMapping("users/{id}")
+    public Optional<User> Read(@PathVariable Integer id) {
         return userService.read(id);
     }
 
     @PutMapping("/{id}")
-    public User Update(@RequestBody User user, @PathVariable Integer id) {
-        User updatedUser = userService.update(id, user);
-        return updatedUser;
+    public void Update(@RequestBody User user, @PathVariable Integer id) {
+        userService.update(id, user);
     }
 
     @DeleteMapping("/{id}")

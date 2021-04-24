@@ -2,16 +2,14 @@ package com.springbootcodeproject.springbootcodeproject.Model;
 
 import com.springbootcodeproject.springbootcodeproject.Enum.UserType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
 public class User {
 
     @Id
+    @GeneratedValue
     private Integer id;
     @Column
     private String username;
